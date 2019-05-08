@@ -3,7 +3,7 @@
     <div class="cat-card" @click="hidden = !hidden">
 
       <div class="card-icon">
-        <img v-bind:src="`/${budget.name.toLowerCase()}.png`" alt="icon">
+        <img :src="imgPath" alt="icon">
       </div>
 
       <div class="card-content">
@@ -14,12 +14,10 @@
             class="highlight-text"
           >{{ centsToDollars(budget.target) }}</span>
         </p>
-
         <p class="subtext vsm-font">{{ budget.transactions.length }} transactions</p>
         <p
           class="subtext vsm-font card-right"
         >{{percentBudget(transactionTotal(budget.transactions), budget.target)}} of budget</p>
-
         <div class="budget-bar">
           <div class="total-bar"></div>
           <div
@@ -27,12 +25,15 @@
             class="used-bar"
           ></div>
         </div>
-        <budget-items
+      </div>
+      <div class="transaction-card">
+              <budget-items
           :class="{ hidden: hidden }"
           v-for="(transaction, index) in budget.transactions"
           v-bind:key="index"
           v-bind:transaction="transaction"
-        ></budget-items>
+          v-bind:centsToDollars="centsToDollars"
+      ></budget-items>
       </div>
     </div>
 
@@ -50,6 +51,15 @@ export default {
   data() {
     return {
       hidden: true
+    }
+  },
+  computed: {
+    imgPath () {
+      if (this.budget) {
+        return `${this.budget.name.toLowerCase()}.png`
+      } else {
+        return "image not found"
+      }
     }
   },
   methods: {

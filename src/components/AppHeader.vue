@@ -1,7 +1,7 @@
 <template>
   <div class="header-box">
       <div class="logo-box">
-        <img src="@/assets/logo.png" alt="Savify Logo">
+        <img src="logo.png" alt="Savify Logo">
         <div class="logo-text">savify</div>
       </div>
       <div class="header">

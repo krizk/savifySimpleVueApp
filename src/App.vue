@@ -211,7 +211,6 @@ body {
 /* SLIDER STYLES */
 .view-slider-wrapper {
   display: grid;
-  background-color: ;
   width: fit-content;
   grid-template-rows: 23px;
   grid-template-columns: 110px 110px;
